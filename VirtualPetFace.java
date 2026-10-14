@@ -82,6 +82,13 @@ public class VirtualPetFace extends JFrame implements ActionListener{
         //setImage("angel");      
         //setMessage("Hello, and Welcome!");
     }
+    public void setAnimationDelay(int milliseconds) {
+    if (milliseconds <= 0) {
+        throw new IllegalArgumentException("Delay must be greater than zero");
+    }
+    timer.setDelay(milliseconds);
+    timer.setInitialDelay(milliseconds);
+}
     
     public void createGUI() {
         setMaximumSize(new Dimension(WIDTH, HEIGHT));
