@@ -43,6 +43,8 @@ public class VPmain {
             vp.getfat();
             Strong = -1;
         } else if (ansE != null && ansE.equalsIgnoreCase("no")) {
+            vp.bexercise();
+            waitABeat(5000);
             vp.Jacked();
             Strong = 1;
         }
