@@ -1,83 +1,92 @@
-import javax.swing.*;
 
-public class VPmain {
+/* Virtual Pet, version 1
+ *
+ * @author Cam
+ * @author ?
+ */
+public class VirtualPet {
+    public boolean fat = false;
+    VirtualPetFace face;
+    int hunger = 0;   // how hungry the pet is.
 
-    VirtualPet vp = new VirtualPet();
-    int Strong = 0;
-
-    public VPmain() {
-        vp.Start();
-
-        String ansA = askForInput("What should I eat? Chips, yes or no");
-        if (ansA != null && ansA.equalsIgnoreCase("yes")) {
-            vp.getfat();
-            Strong = -1;
-        }
-
-        waitABeat(1000);
-
-        String ansB = askForInput("Should I do steroids? yes or no");
-        if (ansB != null && ansB.equalsIgnoreCase("yes")) {
-            vp.doDrugs();
-            waitABeat(4000);
-            vp.Jacked();
-            Strong = 1;
-        }
-
-        String ansC = askForInput("Should I get McDonalds for dinner? yes or no");
-        if (ansC != null && ansC.equalsIgnoreCase("yes")) {
-            vp.getfat();
-            Strong = -1;
-        }
-
-        String ansD = askForInput("Should I work out? yes or no");
-        if (ansD != null && ansD.equalsIgnoreCase("yes")) {
-            vp.bexercise();
-            waitABeat(5000);
-            vp.strong();
-            Strong = 2;
-        }
-
-        String ansE = askForInput("Should I take a break from workingout? yes or no");
-        if (ansE != null && ansE.equalsIgnoreCase("yes")) {
-            vp.getfat();
-            Strong = -1;
-        } else if (ansE != null && ansE.equalsIgnoreCase("no")) {
-            vp.Jacked();
-            Strong = 1;
-        }
-
-        String ansF = askForInput("Am I ready for entering competition? yes or no");
-        if (ansF != null && ansF.equalsIgnoreCase("yes")) {
-            vp.Won();
-            Strong = -1;
-        } else if (ansF != null && ansF.equalsIgnoreCase("no")) {
-            vp.doDrugs();
-            waitABeat(8000);
-            Strong = 2;
-        }
+    // constructor
+    public VirtualPet() {
+        face = new VirtualPetFace();
+        face.setImage("normal");
+        face.setMessage("Hello.");
     }
 
-
-    public void waitABeat(int ms) {
-        try {
-            Thread.sleep(ms); // milliseconds
-        } catch (Exception e) {
-            // Ignore interruption exceptions
+    public void feed() {
+        if (hunger > 10) {
+            hunger = hunger - 10;
+        } else {
+            hunger = 0;
         }
+        face.setMessage("Yum, thanks");
+        face.setImage("normal");
+    }
+    public void tired() {
+        face.setImage("tired");
+    }
+    public void exercise() {
+
+        face.setImage("exercise");
+        face.setMessage("Huff Puff");
+    }
+     public void bexercise() {
+
+        face.setImage("bexersize");
+        face.setMessage("Huff Puff");
+
+
+     }
+     public void strong() {
+
+        face.setImage("manStrong");
+     }
+
+    public void sleep() {
+        hunger = hunger + 1;
+        face.setImage("asleep");
+    }
+    public void Start(){
+        face.setImage("manSkinny");
+        face.setMessage("Im trying to loose weight what. should I eat?");
+    }
+    public void getfat(){
+        face.setImage("manFat");
+        face.setMessage("I feel so fat now.");
+        boolean fat = true;
+    }
+    public void getskinny(){
+        face.setImage("manSkinny");
+        face.setMessage("I feel so skinny now.");
+    }
+    public void shouldWorkout(){
+        face.setMessage("Should I work out?");
+
+
+    }
+    public void doDrugs(){
+        face.setImage("manSteroid");
+        face.setMessage("I feel so strong now.");
+
+    }
+    public void veryStrong(){
+        face.setImage("Jacked");
+        face.setMessage("I feel so strong now.");
+    }
+    public void Jacked(){
+        face.setImage("Jacked");
     }
 
-    public String askForInput(String q) {
-        String s = (String) JOptionPane.showInputDialog(
-                    new JFrame(),
-                    q,
-                    "Input Dialog",
-                    JOptionPane.PLAIN_MESSAGE
-        );
-        return s;
-    }
+    public void Won() {
+        this.face.setImage("manWon");
+        this.face.setMessage("I won the competition");
+   }
 
-    public static void main(String[] args) {
-        new VPmain();
-    }
+
+
+
 }
+// end Virtual Pet
